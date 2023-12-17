@@ -26,7 +26,7 @@ def ping() :
 @app.route("/remover", methods = ["POST"])
 def remover() : 
     if request.method == "POST" :
-        url = request.form["url"]
+        url = request.get_json()["url"]
         res = requests.get(url).content
         image = remove(res)
 
