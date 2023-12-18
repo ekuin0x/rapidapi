@@ -1,4 +1,3 @@
 flask
 gunicorn
-rembg
-pyrebase4
+language-check

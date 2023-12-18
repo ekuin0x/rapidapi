@@ -1,8 +1,6 @@
 from flask import Flask, request, render_template
-from rembg import remove
 import random
 import requests
-import pyrebase
 
 config = {
   "apiKey": "AIzaSyBFj4WtVAfarJFy0V6YwccqTNplYajofOo",
@@ -21,24 +19,8 @@ def index() :
 
 @app.route("/test", methods = ["POST"])
 def test() : 
-    if request.method == "POST" :
-        url = request.get_json()["url"]
-        try : 
-            data = requests.get(url).content
-        except : 
-            return "Invalid image URL"
-
-        image = remove(data)
-        fname = str(random.randint(0,9999999)) + ".png"
-
-        firebase = pyrebase.initialize_app(config)
-        storage = firebase.storage()
-        storage.child(fname).put(image)
-        url = storage.child(fname).get_url("")
-        return url
+    return "wassup"
         
-
-
 def index() : 
     return "<h1> HEY, STALKER! </h1>"
 
