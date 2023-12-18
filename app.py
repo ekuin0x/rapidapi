@@ -13,19 +13,23 @@ def index() :
 @app.route("/extract", methods = ["GET"])
 def test() : 
     url = request.args.get("url")
+    lang = request.args.get("lang") 
     try : 
-        article = newspaper.Article(url=url, language='en')
+        article = newspaper.Article(url=url, language=lang)
         article.download()
         article.parse()
         title = article.title 
         text = article.text 
+        keywords = article.keywords
         img = article.top_image
         publish_date = datetime.now().strftime("%b-%d, %Y")
 
         data = {
+            "url" : url,
             "title" : title,
             "text" : text,
-            "image" : img,
+            "top_image" : img,
+            "keywords" : keywords,
             "publish_date" : publish_date 
         }
         return json.dumps(data)
