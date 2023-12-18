@@ -19,23 +19,19 @@ app = Flask(__name__)
 def index() : 
     return "<h1> HEY, STALKER! </h1>"
 
+@app.route("/test", methods = ["POST"])
+def test() : 
+    if request.method == "POST" :
+        url = request.get_json()["url"]
+        return url
+
+def index() : 
+    return "<h1> HEY, STALKER! </h1>"
+
+
 @app.route("/ping")
 def ping() : 
     return "Server is Live"
-
-@app.route("/remover", methods = ["POST"])
-def remover() : 
-    if request.method == "POST" :
-        url = request.get_json()["url"]
-        res = requests.get(url).content
-        image = remove(res)
-
-        firebase = pyrebase.initialize_app(config)
-        storage = firebase.storage()
-        name = str(random.randint(1, 9000000)) + ".png"
-        storage.child(name).put(image)
-        url = storage.child(name).get_url("")
-        return url
 
 if __name__ == "__main__" : 
     app.run(port=5000, debug=False)
