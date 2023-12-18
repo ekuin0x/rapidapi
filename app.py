@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import newspaper
 import json
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -12,13 +13,10 @@ def index() :
 @app.route("/extract", methods = ["GET"])
 def test() : 
     url = request.args.get("url")
-    article = newspaper.Article(url=url, language='en')
-    article.download()
-    article.parse()
-    return "COOOL"
     try : 
-        
-
+        article = newspaper.Article(url=url, language='en')
+        article.download()
+        article.parse()
         title = article.title 
         text = article.text 
         img = article.top_image
