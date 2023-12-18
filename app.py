@@ -12,6 +12,7 @@ def index() :
 @app.route("/extract", methods = ["GET"])
 def test() : 
     url = request.args.get("url")
+    return url
     try : 
         article = newspaper.Article(url=url, language='en')
         article.download()
