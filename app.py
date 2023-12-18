@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import newspaper3k
+import newspaper
 import json
 
 
