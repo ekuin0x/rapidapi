@@ -1,8 +1,5 @@
 from flask import Flask, request, render_template
-from rembg import remove
-import requests
-import pyrebase
-import random
+
 
 config = {
   "apiKey": "AIzaSyBFj4WtVAfarJFy0V6YwccqTNplYajofOo",
